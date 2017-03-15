@@ -1,5 +1,6 @@
 function Player() {
     this.angle = 0;
+    this.speed = 0.15;
     this.keys = {
         left: LEFT_ARROW,
         right: RIGHT_ARROW
@@ -7,7 +8,8 @@ function Player() {
 }
 
 Player.prototype.update = function() {
-
+    if (keyIsDown(this.keys.left)) this.angle -= this.speed;
+    if (keyIsDown(this.keys.right)) this.angle += this.speed;
 }
 
 Player.prototype.show = function(hue) {
