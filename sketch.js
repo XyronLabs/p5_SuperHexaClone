@@ -1,5 +1,6 @@
 var angle = 0;
 var player;
+var obstacles = [];
 
 function setup() {
     createCanvas(800, 480);
@@ -16,6 +17,16 @@ function draw() {
 
     // Render
     renderBackground(frameCount % 360);
+
+    for (var i = obstacles.length - 1; i >= 0; i--) {
+        obstacles[i].update();
+        obstacles[i].show(frameCount % 360);
+
+        if(obstacles[i].distance <= 0) {
+            obstacles.splice(i, 1);
+        }
+    }
+    
     renderCenter(frameCount % 360);
 
     // Player
@@ -24,6 +35,10 @@ function draw() {
 
     // Handle angle
     angle = frameCount * 0.01;
+
+    if(frameCount % 120 == 0) {
+        obstacles.push(new Obstacle());
+    }
 }
 
 
