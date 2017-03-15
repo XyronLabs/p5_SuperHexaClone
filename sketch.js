@@ -1,8 +1,10 @@
 var angle = 0;
+var player;
 
 function setup() {
     createCanvas(800, 480);
     colorMode(HSB);
+    player = new Player();
 }
 
 function draw() {
@@ -16,6 +18,9 @@ function draw() {
     renderBackground(frameCount % 360);
     renderCenter(frameCount % 360);
 
+    // Player
+    player.update();
+    player.show(frameCount % 360);
 
     // Handle angle
     angle = frameCount * 0.01;
